@@ -1,5 +1,6 @@
 package com.bezkoder.springjwt.controllers;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,8 +11,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/test")
 public class TestController {
+
+  @Value("${JWT.SECRET.Env}")
+  private Object jwtSecret;
+
   @GetMapping("/all")
   public String allAccess() {
+    System.out.println(jwtSecret);
     return "Public Content.";
   }
 
